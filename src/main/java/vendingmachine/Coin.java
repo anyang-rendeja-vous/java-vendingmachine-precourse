@@ -20,6 +20,9 @@ public enum Coin {
         return this.count;
 //        return Coin.valueOf("COIN_"+amount).count;
     }
+    public int getAmount(){
+        return this.amount;
+    }
 
 
 

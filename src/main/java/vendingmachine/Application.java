@@ -7,11 +7,13 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        OutputView output = new OutputView();
         int coinTotalPrice= getCoinPrice();
         VendingMachine vendingMachine = new VendingMachine(coinTotalPrice);
         generateCoins(coinTotalPrice);
 //        generateStock(vendingMachine);
 //        System.out.println(Coin.COIN_10.getCount(10));
+        output.printCoins();
 
 
     }
@@ -21,33 +23,16 @@ public class Application {
     }
     public static void generateCoins(int price){
         int totalPrice = price;
-        List<Integer> numbers =Arrays.asList(0,1,2,3);
+        List<Integer> numbers =Arrays.asList(0,1,2,3,4,5);
         List<Integer> coins =Arrays.asList(500,100,50,10);
         int index=0;
         int coinPrice;
         while(true){
             int count=Randoms.pickNumberInList(numbers);
             coinPrice=coins.get(index);
-//            System.out.println("totalPrice = " + totalPrice);
-//            System.out.println("count = " + count);
-//            System.out.println("coinPrice = " + coinPrice);
             if(totalPrice-count*coinPrice>0){
                 String coinName="COIN_"+coinPrice;
-                //check
-//                System.out.println("coinPrice = " + coinPrice);
                 Coin.valueOf(coinName).setCount(count);
-//                if(coinPrice==500){
-//                    Coin.COIN_500.setCount(count);
-//                }
-//                if(coinPrice==100){
-//                    Coin.COIN_100.setCount(count);
-//                }
-//                if(coinPrice==50){
-//                    Coin.COIN_50.setCount(count);
-//                }
-//                if(coinPrice==10){
-//                    Coin.COIN_10.setCount(count);
-//                }
                 index++;
                 totalPrice-=count*coinPrice;
             }
