@@ -17,4 +17,9 @@ public class InputView {
         }
         return coinPrice;
     }
+    public void addStock(){
+        print.addStock();
+
+    }
+
 }
