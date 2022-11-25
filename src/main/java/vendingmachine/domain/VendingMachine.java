@@ -5,16 +5,19 @@ import java.util.List;
 
 public class VendingMachine {
 
-    private final Integer amountOfMoney;
     private final List<Coin> coins = new ArrayList<>();
+    private final List<Product> products = new ArrayList<>();
 
-    public VendingMachine(Integer amountOfMoney) {
-        this.amountOfMoney = amountOfMoney;
+    public VendingMachine(String amountOfMoney, String products) {
         initCoin(amountOfMoney);
+        initProduct(products);
     }
 
-    public List<Coin> initCoin(Integer amountOfMoney) {
+    public List<Coin> initCoin(String amountOfMoney) {
         return coins;
     }
 
+    public List<Product> initProduct(String product) {
+        return products;
+    }
 }
