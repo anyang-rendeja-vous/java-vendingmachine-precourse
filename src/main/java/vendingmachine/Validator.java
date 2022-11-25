@@ -17,7 +17,7 @@ public class Validator {
         }
         return coinPrice;
     }
-    public int inputCash(){
+    public int cashToBuy(){
         int inputPrice;
         try{
             inputPrice = Integer.parseInt(Console.readLine());

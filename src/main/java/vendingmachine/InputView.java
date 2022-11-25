@@ -42,7 +42,7 @@ public class InputView {
 
         while(true){
             print.inputCash();
-            int inputPrice= validate.inputCash();
+            int buyPrice= validate.cashToBuy();
             print.wantedItem();
             String wantedItem=Console.readLine();
             //없으면 예외처리

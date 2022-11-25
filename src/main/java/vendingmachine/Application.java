@@ -39,5 +39,17 @@ public class Application {
     public static void generateStock(VendingMachine vendingMachine){
         InputView input = new InputView();
         vendingMachine.setStocks(input.addStock());
+        setMinPrice(vendingMachine);
+    }
+    public static void setMinPrice(VendingMachine vendingMachine){
+        List<List<String>> stocks = vendingMachine.stocks;
+        int minPrice=999999;
+        for(List<String> item : stocks){
+            int itemPrice = Integer.parseInt(item.get(1));
+            if(itemPrice<minPrice){
+                minPrice=itemPrice;
+            }
+        }
+        vendingMachine.minPrice=minPrice;
     }
 }
