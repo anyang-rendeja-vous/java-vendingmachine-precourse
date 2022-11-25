@@ -6,13 +6,16 @@ import java.util.List;
 import vendingmachine.domain.Product;
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.view.InputView;
+import vendingmachine.view.OutputView;
 
 public class VendingMachineController {
 
     private final InputView inputView;
+    private final OutputView outputView;
 
     public VendingMachineController() {
         inputView = new InputView();
+        outputView = new OutputView();
     }
 
     public void run() {
@@ -27,5 +30,7 @@ public class VendingMachineController {
         }
 
         VendingMachine vendingMachine = new VendingMachine(amountOfMoney, productGroup);
+        outputView.printVendingMachineCoins(vendingMachine);
+
     }
 }
