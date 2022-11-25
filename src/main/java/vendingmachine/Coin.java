@@ -13,6 +13,13 @@ public enum Coin {
         this.amount = amount;
         this.count=count;
     }
+    public void setCount(int newCount){
+        this.count=newCount;
+    }
+    public int getCount(){
+        return this.count;
+//        return Coin.valueOf("COIN_"+amount).count;
+    }
 
 
 

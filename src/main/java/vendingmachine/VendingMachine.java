@@ -7,6 +7,7 @@ public class VendingMachine {
     int minPrice;
     private final int inputPrice;
     public List<List<String>> stocks;
+    public Coin coins;
 
     public VendingMachine(int inputPrice) {
         this.inputPrice = inputPrice;
@@ -14,6 +15,9 @@ public class VendingMachine {
 
     public void setStocks(List<List<String>> stocks) {
         this.stocks = stocks;
+    }
+    public void setCoins(Coin coins){
+        this.coins=coins;
     }
 
     //
