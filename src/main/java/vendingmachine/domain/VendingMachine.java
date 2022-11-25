@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import vendingmachine.util.MoneyGenerator;
 
 public class VendingMachine {
 
@@ -16,10 +17,20 @@ public class VendingMachine {
     }
 
     public void initCoin(String amountOfMoney) {
-        List<Coin> coins = Arrays.stream(Coin.values())
+        int amount = Integer.parseInt(amountOfMoney);
+
+        List<Integer> coins = Arrays.stream(Coin.values())
+                .map(Coin::getAmount)
                 .collect(Collectors.toList());
-        coins.forEach(coin ->
-                coinGroup.add(Coin.getCoin(Integer.parseInt(amountOfMoney) / coin.getAmount()))
-        );
+
+        int pick;
+        while (amount > 0) {
+            pick = MoneyGenerator.generate(coins);
+            if (pick <= amount) {
+                coinGroup.add(Coin.getCoin(pick));
+                amount -= pick;
+            }
+        }
+
     }
 }
