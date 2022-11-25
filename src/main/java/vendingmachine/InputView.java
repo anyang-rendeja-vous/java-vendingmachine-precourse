@@ -38,5 +38,8 @@ public class InputView {
         return stock;
 
     }
+    public void chooseItem(){
+        print.inputCash();
+    }
 
 }
