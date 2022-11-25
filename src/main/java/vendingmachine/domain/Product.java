@@ -47,4 +47,12 @@ public class Product {
             throw new IllegalArgumentException(PRICE_DIVISOR_ERROR);
         }
     }
+
+    public int getPrice() { // TODO: getter
+        return price;
+    }
+
+    public String getName() { // TODO: getter
+        return name;
+    }
 }
