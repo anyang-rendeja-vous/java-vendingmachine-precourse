@@ -11,9 +11,9 @@
     - ex. `[콜라,1500,20];[사이다,1000,10]`
 
 
-- [ ] 투입 금액을 입력 받는다.
-- [ ] 상품명을 입력 받는다.
-  - [ ] 해당 상품 가격을 제외한 투입 금액을 계산한다. VendingMachine#updateCoin
+- [x] 투입 금액을 입력 받는다.
+- [x] 상품명을 입력 받는다.
+  - [x] 해당 상품 가격을 제외한 투입 금액을 계산한다. VendingMachine#updateCoin
 
 
 - [ ] 잔돈을 계산한다. VendingMachine#calculateRemainingAmount
