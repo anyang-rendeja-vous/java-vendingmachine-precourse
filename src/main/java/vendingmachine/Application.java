@@ -2,6 +2,7 @@ package vendingmachine;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,26 +11,57 @@ public class Application {
         OutputView output = new OutputView();
         int coinTotalPrice= getCoinPrice();
         VendingMachine vendingMachine = new VendingMachine(coinTotalPrice);
+        System.out.println("설치완료");
         generateCoins(coinTotalPrice);
-        generateStock(vendingMachine);
-        chooseItem(vendingMachine);
+        System.out.println("동전생성");
         output.printCoins();
+        generateStock(vendingMachine);
+        int change=chooseItem(vendingMachine);
+//        System.out.println("change = " + change);;
+        List<Integer> changeCount=calculateChange(vendingMachine,change);
+//        System.out.println("changeCount = " + changeCount);
+        output.printChange(changeCount);
+
+
 
 
     }
-    public static void chooseItem(VendingMachine vendingMachine){
+    public static List<Integer> calculateChange(VendingMachine vendingMachine,int change){
+        List<Integer> changeCount=Arrays.asList(0,0,0,0);
+        List<Integer> num=Arrays.asList(500,100,50,10);
+        int index=0;
+        for(int price:num){
+            if(change>price){
+                int left=Coin.valueOf("COIN_"+price).getCount();
+                int wanted=change/price;
+                if(left>=wanted){
+                    changeCount.set(index,wanted);
+                    change-=wanted*price;
+                }
+                if(left<wanted){
+                    changeCount.set(index,left);
+                    change-=left*price;
+                }
+            }
+            index++;
+        }
+        return changeCount;
+    }
+    public static int chooseItem(VendingMachine vendingMachine){
         InputView input = new InputView();
         int inputPrice= input.getCash();
-        input.chooseItem(vendingMachine,inputPrice);
+        int change=input.chooseItem(vendingMachine,inputPrice);
+        return change;
     }
 
     public static int getCoinPrice(){
         InputView input = new InputView();
-        return input.coin_inside();
+        int price= input.coin_inside();
+        return price;
     }
     public static void generateCoins(int price){
         int totalPrice = price;
-        List<Integer> numbers =Arrays.asList(0,1,2,3,4,5);
+        List<Integer> numbers =Arrays.asList(0,1,2,3);
         List<Integer> coins =Arrays.asList(500,100,50,10);
         int index=0;
         int coinPrice;
@@ -42,6 +74,7 @@ public class Application {
                 index++;
                 totalPrice-=count*coinPrice;
             }
+
             if(index==4){
                 break;
             }

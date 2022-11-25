@@ -43,21 +43,19 @@ public class InputView {
        return validate.cashToBuy();
     }
 
-    public void chooseItem(VendingMachine vendingMachine,int inputCash){
-        while(true){
+    public int chooseItem(VendingMachine vendingMachine,int inputCash){
+        while(true) {
             print.inputValue();
-            System.out.println(inputCash+"원");
-            if(inputCash<vendingMachine.minPrice){
+            System.out.println(inputCash + "원");
+            if (inputCash < vendingMachine.minPrice) {
                 break;
             }
             print.wantedItem();
-            String wantedItem=Console.readLine();
+            String wantedItem = Console.readLine();
 
-            inputCash-=vendingMachine.setStockNum(wantedItem);
-
-            //없으면 예외처리
-
+            inputCash -= vendingMachine.setStockNum(wantedItem);
         }
+        return inputCash;
     }
 
 }
