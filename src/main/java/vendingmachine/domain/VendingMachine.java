@@ -9,21 +9,22 @@ import vendingmachine.util.MoneyGenerator;
 public class VendingMachine {
 
     private final List<Coin> coinGroup = new ArrayList<>();
-    private final List<Product> products;
+    private List<Product> products;
 
-    public VendingMachine(String amountOfMoney, List<Product> products) {
+    public VendingMachine(String amountOfMoney) {
         initCoin(amountOfMoney);
+    }
+
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
     public void initCoin(String amountOfMoney) {
+        int pick;
         int amount = Integer.parseInt(amountOfMoney);
-
         List<Integer> coins = Arrays.stream(Coin.values())
                 .map(Coin::getAmount)
                 .collect(Collectors.toList());
-
-        int pick;
         while (amount > 0) {
             pick = MoneyGenerator.generate(coins);
             if (pick <= amount) {

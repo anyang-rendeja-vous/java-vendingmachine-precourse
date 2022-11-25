@@ -22,15 +22,17 @@ public class VendingMachineController {
 
         String amountOfMoney = inputView.inputAmountOfMoney();
 
+        VendingMachine vendingMachine = new VendingMachine(amountOfMoney);
+        outputView.printVendingMachineCoins(vendingMachine);
+
         String products = inputView.inputProduct();
         List<Product> productGroup = new ArrayList<>();
         if (products.contains(";")) {
             Arrays.asList(products.split(";"))
                     .forEach(product -> productGroup.add(new Product(product)));
         }
+        vendingMachine.setProducts(productGroup);
 
-        VendingMachine vendingMachine = new VendingMachine(amountOfMoney, productGroup);
-        outputView.printVendingMachineCoins(vendingMachine);
 
     }
 }

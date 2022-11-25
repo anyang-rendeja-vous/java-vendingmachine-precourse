@@ -20,6 +20,7 @@ public class InputView {
     }
 
     public String inputProduct() {
+        System.out.println();
         System.out.println(ENTER_PRODUCT_INFORMATION);
         String products = input();
         if (!InputValidator.checkProduct(products)) {
