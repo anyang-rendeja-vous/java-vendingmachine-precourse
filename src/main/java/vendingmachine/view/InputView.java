@@ -16,9 +16,6 @@ public class InputView {
     public String inputAmountOfMoney() {
         System.out.println(ENTER_VENDING_MACHINE_MONEY);
         String products = input();
-        if (!InputValidator.checkProduct(products)) {
-            throw new IllegalArgumentException(PRODUCT_INPUT_FORMAT_ERROR);
-        }
         return products;
     }
 
