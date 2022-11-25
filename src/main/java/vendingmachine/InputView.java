@@ -39,8 +39,16 @@ public class InputView {
 
     }
     public void chooseItem(){
-        print.inputCash();
-        int inputPrice= validate.inputCash();
+
+        while(true){
+            print.inputCash();
+            int inputPrice= validate.inputCash();
+            print.wantedItem();
+            String wantedItem=Console.readLine();
+            //없으면 예외처리
+
+//            if(inputPrice)
+        }
     }
 
 }
