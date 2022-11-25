@@ -20,7 +20,7 @@ public class VendingMachineController {
 
     public void run() {
 
-        String amountOfMoney = inputView.inputAmountOfMoney();
+        String amountOfMoney = inputView.inputMachineMoney();
 
         VendingMachine vendingMachine = new VendingMachine(amountOfMoney);
         outputView.printVendingMachineCoins(vendingMachine);
@@ -33,6 +33,17 @@ public class VendingMachineController {
         }
         vendingMachine.setProducts(productGroup);
 
+        String inputUserMoney = inputView.inputUserMoney();
+        vendingMachine.setInputMoney(Integer.parseInt(inputUserMoney));
 
+        int inputMoney;
+        while (true) {
+            inputMoney = vendingMachine.getInputMoney();
+            outputView.printInputMoney(inputMoney);
+            String inputProductName = inputView.inputProductName();
+            if (!vendingMachine.sell(inputProductName)) {
+                break;
+            }
+        }
     }
 }
