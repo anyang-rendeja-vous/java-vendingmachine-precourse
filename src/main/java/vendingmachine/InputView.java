@@ -52,6 +52,9 @@ public class InputView {
             }
             print.wantedItem();
             String wantedItem=Console.readLine();
+
+            inputCash-=vendingMachine.setStockNum(wantedItem);
+
             //없으면 예외처리
 
         }

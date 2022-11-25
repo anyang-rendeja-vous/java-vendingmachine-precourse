@@ -12,7 +12,7 @@ public class Application {
         VendingMachine vendingMachine = new VendingMachine(coinTotalPrice);
         generateCoins(coinTotalPrice);
         generateStock(vendingMachine);
-
+        chooseItem(vendingMachine);
         output.printCoins();
 
 

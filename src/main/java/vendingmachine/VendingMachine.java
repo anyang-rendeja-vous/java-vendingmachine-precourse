@@ -21,23 +21,15 @@ public class VendingMachine {
     }
 
     //
-//    public void wrongAnswer() {
-//        step++;
-//        howFar=step;
-//        step = 0;
-//    }
-//    public void rightAnswer() {
-//        step++;
-//        howFar=step;
-//    }
-//
-//    public List<String> setMyRoute(int index, String uD) {
-//        if (index == 0) {
-//            myRoute = new ArrayList<>();
-//        }
-//        myRoute.add(uD);
-//        return myRoute;
-//    }
-
+    public int setStockNum(String itemName){
+        for(List<String>item: stocks){
+            if(item.get(0).equals(itemName)){
+                int leftStock=Integer.parseInt(item.get(2))-1;
+                item.set(2,String.valueOf(leftStock));
+                return Integer.parseInt(item.get(1));
+            }
+        }
+        return 0;
+    }
 
 }
