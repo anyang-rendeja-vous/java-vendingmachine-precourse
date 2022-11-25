@@ -9,9 +9,9 @@ import java.util.Random;
 public class Application {
     public static void main(String[] args) {
         int coinTotalPrice= getCoinPrice();
-        VendingMachine vM = new VendingMachine(coinTotalPrice);
+        VendingMachine vendingMachine = new VendingMachine(coinTotalPrice);
         generateCoins(coinTotalPrice);
-        List<List<String>> stock = generateStock();
+        generateStock(vendingMachine);
 
 
     }
@@ -36,8 +36,8 @@ public class Application {
 //            }
 //        }
     }
-    public static List<List<String>> generateStock(){
+    public static void generateStock(VendingMachine vendingMachine){
         InputView input = new InputView();
-        return input.addStock();
+        vendingMachine.setStocks(input.addStock());
     }
 }
