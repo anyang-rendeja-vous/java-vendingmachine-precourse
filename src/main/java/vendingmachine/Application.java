@@ -11,12 +11,18 @@ public class Application {
         int coinTotalPrice= getCoinPrice();
         VendingMachine vendingMachine = new VendingMachine(coinTotalPrice);
         generateCoins(coinTotalPrice);
-//        generateStock(vendingMachine);
-//        System.out.println(Coin.COIN_10.getCount(10));
+        generateStock(vendingMachine);
+
         output.printCoins();
 
 
     }
+    public static void chooseItem(VendingMachine vendingMachine){
+        InputView input = new InputView();
+        int inputPrice= input.getCash();
+        input.chooseItem(vendingMachine,inputPrice);
+    }
+
     public static int getCoinPrice(){
         InputView input = new InputView();
         return input.coin_inside();
@@ -49,20 +55,16 @@ public class Application {
         if(totalPrice>100){
             newCount=Coin.COIN_100.getCount()+totalPrice/100;
             Coin.COIN_100.setCount(newCount);
-//            Coin.valueOf("COIN_100").count+=totalPrice/100;
             totalPrice%=100;
         }
         if(totalPrice>50){
             newCount=Coin.COIN_50.getCount()+totalPrice/50;
             Coin.COIN_50.setCount(newCount);
-//            Coin.valueOf("COIN_50").count+=totalPrice/50;
             totalPrice%=50;
         }
         if(totalPrice>10){
             newCount=Coin.COIN_10.getCount()+totalPrice/10;
             Coin.COIN_10.setCount(newCount);
-//            Coin.valueOf("COIN_10").count+=totalPrice/10;
-//            totalPrice%=10;
         }
 
 

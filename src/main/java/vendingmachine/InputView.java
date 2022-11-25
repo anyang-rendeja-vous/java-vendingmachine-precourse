@@ -38,16 +38,22 @@ public class InputView {
         return stock;
 
     }
-    public void chooseItem(){
+    public int getCash(){
+        print.inputCash();
+       return validate.cashToBuy();
+    }
 
+    public void chooseItem(VendingMachine vendingMachine,int inputCash){
         while(true){
-            print.inputCash();
-            int buyPrice= validate.cashToBuy();
+            print.inputValue();
+            System.out.println(inputCash+"원");
+            if(inputCash<vendingMachine.minPrice){
+                break;
+            }
             print.wantedItem();
             String wantedItem=Console.readLine();
             //없으면 예외처리
 
-//            if(inputPrice)
         }
     }
 
