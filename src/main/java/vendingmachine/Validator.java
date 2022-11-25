@@ -17,4 +17,18 @@ public class Validator {
         }
         return coinPrice;
     }
+    public int inputCash(){
+        int inputPrice;
+        try{
+            inputPrice = Integer.parseInt(Console.readLine());
+        }catch (NumberFormatException e){
+            try {
+                throw new IllegalArgumentException();
+            }catch (IllegalArgumentException error){
+                System.out.println("ERROR_MESSAGE");
+                return 0;
+            }
+        }
+        return inputPrice;
+    }
 }

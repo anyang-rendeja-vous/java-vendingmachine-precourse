@@ -40,6 +40,7 @@ public class InputView {
     }
     public void chooseItem(){
         print.inputCash();
+        int inputPrice= validate.inputCash();
     }
 
 }
