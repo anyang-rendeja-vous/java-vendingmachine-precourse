@@ -10,6 +10,8 @@ public class Application {
     public static void main(String[] args) {
         int coinTotalPrice= getCoinPrice();
         generateCoins(coinTotalPrice);
+        List<List<String>> stock = generateStock();
+
 
     }
     public static int getCoinPrice(){
@@ -32,5 +34,9 @@ public class Application {
 //                totalPrice-=count*coinPrice;
 //            }
 //        }
+    }
+    public static List<List<String>> generateStock(){
+        InputView input = new InputView();
+        return input.addStock();
     }
 }
