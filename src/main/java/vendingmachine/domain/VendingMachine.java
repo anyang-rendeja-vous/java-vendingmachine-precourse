@@ -1,23 +1,25 @@
 package vendingmachine.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class VendingMachine {
 
-    private final List<Coin> coins = new ArrayList<>();
-    private final List<Product> products = new ArrayList<>();
+    private final List<Coin> coinGroup = new ArrayList<>();
+    private final List<Product> products;
 
-    public VendingMachine(String amountOfMoney, String products) {
+    public VendingMachine(String amountOfMoney, List<Product> products) {
         initCoin(amountOfMoney);
-        initProduct(products);
+        this.products = products;
     }
 
-    public List<Coin> initCoin(String amountOfMoney) {
-        return coins;
-    }
-
-    public List<Product> initProduct(String product) {
-        return products;
+    public void initCoin(String amountOfMoney) {
+        List<Coin> coins = Arrays.stream(Coin.values())
+                .collect(Collectors.toList());
+        coins.forEach(coin ->
+                coinGroup.add(Coin.getCoin(Integer.parseInt(amountOfMoney) / coin.getAmount()))
+        );
     }
 }
