@@ -48,7 +48,7 @@ public class OutputView {
 
     public void printLeftovers(int money) {
         System.out.println();
-        System.out.println(MONEY_REMAINING.msg() + money);
+        System.out.println(MONEY_REMAINING.msg() + money + WON);
     }
 
 

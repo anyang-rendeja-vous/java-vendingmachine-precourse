@@ -22,6 +22,10 @@ public class VendingMachine {
         return stocks.exists(existingStock) && stocks.canAfford(usersMoney.getMoney(), existingStock);
     }
 
+    public boolean isPurchasable(){
+        return stocks.exists() && stocks.canAfford(usersMoney.getMoney());
+    }
+
     public int getUsersMoney() {
         return usersMoney.getMoney();
     }

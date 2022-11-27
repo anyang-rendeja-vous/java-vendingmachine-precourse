@@ -63,7 +63,7 @@ public class MachineController {
     }
 
     private void purchase() {
-        while (true) {
+        while (vendingMachine.isPurchasable()) {
             outputView.printLeftovers(vendingMachine.getUsersMoney());
             outputView.printUsersStockChoiceOpening();
             try {

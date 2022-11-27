@@ -1,5 +1,6 @@
 package vendingmachine.domain;
 
+import static java.lang.Math.*;
 import static vendingmachine.ui.MessageUtils.INVALID_STOCK_INFO;
 
 import java.util.ArrayList;
@@ -16,11 +17,11 @@ public class Stocks {
         }
     }
 
-    private List<String> parseStockInput(String input) throws IllegalArgumentException{
+    private List<String> parseStockInput(String input) throws IllegalArgumentException {
         List<String> stocks = new ArrayList<>();
 
         StringTokenizer tokenizer = new StringTokenizer(input, ";");
-        while(tokenizer.hasMoreTokens()){
+        while (tokenizer.hasMoreTokens()) {
             stocks.add(tokenizer.nextToken());
         }
 
@@ -29,22 +30,40 @@ public class Stocks {
 
     public Stock getMatchingStock(String userInput) {
         for (Stock stock : stocks) {
-            if (stock.getMerchandise().equals(userInput)){
+            if (stock.getMerchandise().equals(userInput)) {
                 return stock;
             }
         }
         throw new IllegalArgumentException(INVALID_STOCK_INFO.msg());
     }
 
-    public boolean exists(Stock stock){
+    public boolean exists(Stock stock) {
         return stock.hasStock();
+    }
+
+    public boolean exists() {
+        int existingStockCount = 0;
+        for (Stock stock : stocks) {
+            if (stock.hasStock()){
+                existingStockCount++;
+            }
+        }
+        return existingStockCount > 0;
     }
 
     public boolean canAfford(int usersMoney, Stock stock) {
         return usersMoney >= stock.getPrice();
     }
 
-    public void purchaseStock(Stock stock){
+    public boolean canAfford(int usersMoney) {
+        int cheapest = Integer.MAX_VALUE;
+        for (Stock stock : stocks) {
+            cheapest = min(stock.getPrice(), cheapest);
+        }
+        return usersMoney >= cheapest;
+    }
+
+    public void purchaseStock(Stock stock) {
         stock.purchase();
     }
 
