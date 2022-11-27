@@ -21,7 +21,7 @@ public class Stock {
     }
 
     private void validateStockInput(String input) {
-        if (!input.matches("^\\[[^0-9]+,[1-9][0-9][0-9],[0-9]+\\]$")) {
+        if (!input.matches("^\\[[^0-9]+,[1-9][0-9][0-9]+,[0-9]+\\]$")) {
             throw new IllegalArgumentException(INVALID_STOCKS_INPUT.msg());
         }
     }
