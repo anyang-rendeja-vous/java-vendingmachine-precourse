@@ -14,19 +14,27 @@ public class Change {
         return remainedCoins;
     }
 
-    // 잔돈의 수가 최소가 되도록 계산한다
-    public void calculateRemainder(VendingMachine vendingMachine) {
+    public void calculateChange(VendingMachine vendingMachine) {
         int inputMoney =  vendingMachine.getInputMoney();
-        Map<Coin, Integer> numberOfCoins = vendingMachine.getVendingMachineCoin().getNumberOfCoins();
-        for (Entry<Coin, Integer> coin : numberOfCoins.entrySet()) {
-            while (coin.getValue() > 0) {
-                if (coin.getKey().getAmount() > inputMoney) {
-                    break;
-                }
-                inputMoney -= coin.getKey().getAmount();
-                numberOfCoins.put(coin.getKey(), numberOfCoins.get(coin.getKey()) - 1);
-                remainedCoins.put(coin.getKey(), remainedCoins.getOrDefault(coin.getKey(), 0) + 1); // 잔액
-            }
+        Map<Coin, Integer> vendingMachineCoin = vendingMachine.getVendingMachineCoin().getNumberOfCoins();
+        for (Entry<Coin, Integer> coinEntry : vendingMachineCoin.entrySet()) {
+            inputMoney = updateInputMoney(inputMoney, vendingMachineCoin, coinEntry);
         }
+    }
+
+    private int updateInputMoney(int inputMoney, Map<Coin, Integer> vendingMachineCoin, Entry<Coin, Integer> coin) {
+        while (coin.getValue() > 0) {
+            if (coin.getKey().getAmount() > inputMoney) {
+                break;
+            }
+            inputMoney -= coin.getKey().getAmount();
+            updateCoin(vendingMachineCoin, coin);
+        }
+        return inputMoney;
+    }
+
+    private void updateCoin(Map<Coin, Integer> vendingMachineCoin, Entry<Coin, Integer> coin) {
+        vendingMachineCoin.put(coin.getKey(), vendingMachineCoin.get(coin.getKey()) - 1);
+        remainedCoins.put(coin.getKey(), remainedCoins.getOrDefault(coin.getKey(), 0) + 1);
     }
 }

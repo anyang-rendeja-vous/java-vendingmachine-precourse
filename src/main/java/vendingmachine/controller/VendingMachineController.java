@@ -68,7 +68,7 @@ public class VendingMachineController {
         }
 
         Change change = new Change();
-        change.calculateRemainder(vendingMachine);
+        change.calculateChange(vendingMachine);
         outputView.printInputMoney(inputMoney);
         outputView.printRemainder(change);
     }
