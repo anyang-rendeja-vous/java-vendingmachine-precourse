@@ -14,10 +14,6 @@ public class OutputView {
     private static final String DELIMITER = "\n";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-//    public void printNewLine() {
-//        System.out.println();
-//    }
-
     public void printVendingMachineCoins(VendingMachine vendingMachine) {
         System.out.println();
         System.out.println(VENDING_MACHINE_COINS);
