@@ -1,14 +1,14 @@
 package vendingmachine.view;
 
-import static vendingmachine.domain.Coin.COIN_10;
-import static vendingmachine.domain.Coin.COIN_100;
-import static vendingmachine.domain.Coin.COIN_50;
-import static vendingmachine.domain.Coin.COIN_500;
+import static vendingmachine.Coin.COIN_10;
+import static vendingmachine.Coin.COIN_100;
+import static vendingmachine.Coin.COIN_50;
+import static vendingmachine.Coin.COIN_500;
 
 import java.util.Map;
 import java.util.Map.Entry;
 import vendingmachine.domain.coin.Change;
-import vendingmachine.domain.Coin;
+import vendingmachine.Coin;
 import vendingmachine.domain.VendingMachine;
 
 public class OutputView {

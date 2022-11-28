@@ -3,7 +3,7 @@ package vendingmachine.domain.coin;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import vendingmachine.domain.Coin;
+import vendingmachine.Coin;
 import vendingmachine.domain.VendingMachine;
 
 public class Change {
