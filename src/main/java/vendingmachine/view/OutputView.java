@@ -12,6 +12,7 @@ public class OutputView {
     private static final String WON = "원";
     private static final String REMAINDER = "잔돈";
     private static final String DELIMITER = "\n";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
 //    public void printNewLine() {
 //        System.out.println();
@@ -34,5 +35,8 @@ public class OutputView {
         System.out.println(REMAINDER);
         Map<Coin, Integer> coinCounts = remainedCoin.getRemainedCoins();
         System.out.println(String.join(DELIMITER, Coin.getCoinMessage(coinCounts)));
+    }
+    public void printError(String message) {
+        System.out.println(ERROR_PREFIX + message);
     }
 }

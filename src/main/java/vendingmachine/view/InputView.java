@@ -9,7 +9,11 @@ public class InputView {
     private static final String ENTER_PRODUCT_INFORMATION = "상품명과 가격, 수량을 입력해 주세요.";
     private static final String ENTER_INPUT_MONEY = "투입 금액을 입력해 주세요.";
     private static final String ENTER_PRODUCT_NAME = "구매할 상품명을 입력해 주세요.";
-    private static final String PRODUCT_INPUT_FORMAT_ERROR = "[콜라,1500,20];[사이다,1000,10] 과 같은 형식으로 입력해 주세요.";
+    private final InputValidator inputValidator;
+
+    public InputView() {
+        this.inputValidator = new InputValidator();
+    }
 
     private String input() {
         return Console.readLine();
@@ -17,16 +21,16 @@ public class InputView {
 
     public String inputMachineMoney() {
         System.out.println(ENTER_VENDING_MACHINE_MONEY);
-        return input();
+        String machineMoney = input();
+        inputValidator.checkMachineMoney(machineMoney);
+        return machineMoney;
     }
 
     public String inputProduct() {
         System.out.println();
         System.out.println(ENTER_PRODUCT_INFORMATION);
         String products = input();
-        if (!InputValidator.checkProduct(products)) {
-            throw new IllegalArgumentException(PRODUCT_INPUT_FORMAT_ERROR);
-        }
+        inputValidator.checkProduct(products);
         return products;
     }
 
