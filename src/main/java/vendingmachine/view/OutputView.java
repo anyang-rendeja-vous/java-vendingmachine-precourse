@@ -10,7 +10,7 @@ public class OutputView {
     private static final String VENDING_MACHINE_COINS = "자판기가 보유한 동전";
     private static final String INPUT_MONEY = "투입 금액: ";
     private static final String WON = "원";
-    private static final String REMAINDER = "잔돈";
+    private static final String CHANGE = "잔돈";
     private static final String DELIMITER = "\n";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
@@ -31,11 +31,12 @@ public class OutputView {
         System.out.println(inputMoney + WON);
     }
 
-    public void printRemainder(Change remainedCoin) {
-        System.out.println(REMAINDER);
-        Map<Coin, Integer> coinCounts = remainedCoin.getRemainedCoins();
+    public void printChange(Change change) {
+        System.out.println(CHANGE);
+        Map<Coin, Integer> coinCounts = change.getChange();
         System.out.println(String.join(DELIMITER, Coin.getCoinMessage(coinCounts)));
     }
+
     public void printError(String message) {
         System.out.println(ERROR_PREFIX + message);
     }

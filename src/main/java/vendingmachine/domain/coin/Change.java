@@ -8,10 +8,10 @@ import vendingmachine.domain.VendingMachine;
 
 public class Change {
 
-    private final Map<Coin, Integer> remainedCoins = new EnumMap<>(Coin.class); // 잔돈
+    private final Map<Coin, Integer> change = new EnumMap<>(Coin.class); // 잔돈
 
-    public Map<Coin, Integer> getRemainedCoins() { // TODO: getter
-        return remainedCoins;
+    public Map<Coin, Integer> getChange() { // TODO: getter
+        return change;
     }
 
     public void calculateChange(VendingMachine vendingMachine) {
@@ -35,6 +35,6 @@ public class Change {
 
     private void updateCoin(Map<Coin, Integer> vendingMachineCoin, Entry<Coin, Integer> coin) {
         vendingMachineCoin.put(coin.getKey(), vendingMachineCoin.get(coin.getKey()) - 1);
-        remainedCoins.put(coin.getKey(), remainedCoins.getOrDefault(coin.getKey(), 0) + 1);
+        change.put(coin.getKey(), change.getOrDefault(coin.getKey(), 0) + 1);
     }
 }

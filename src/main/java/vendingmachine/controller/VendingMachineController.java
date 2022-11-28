@@ -21,12 +21,10 @@ public class VendingMachineController {
         VendingMachine vendingMachine = createVendingMachine();
         outputView.printVendingMachineCoins(vendingMachine);
 
-        String productGroup = repeat(inputView::inputProduct);
-        Products products = new Products(productGroup);
+        Products products = createProducts();
         vendingMachine.setProducts(products);
 
         String inputUserMoney = repeat(inputView::inputUserMoney);
-
         vendingMachine.setInputMoney(Integer.parseInt(inputUserMoney));
 
         int inputMoney = 0;
@@ -55,12 +53,17 @@ public class VendingMachineController {
         Change change = new Change();
         change.calculateChange(vendingMachine);
         outputView.printInputMoney(inputMoney);
-        outputView.printRemainder(change);
+        outputView.printChange(change);
     }
 
     private VendingMachine createVendingMachine() {
         String amountOfMoney = repeat(inputView::inputMachineMoney);
         return new VendingMachine(amountOfMoney);
+    }
+
+    private Products createProducts() {
+        String productGroup = repeat(inputView::inputProduct);
+        return new Products(productGroup);
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
