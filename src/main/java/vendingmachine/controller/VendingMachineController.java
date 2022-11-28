@@ -21,9 +21,7 @@ public class VendingMachineController {
     }
 
     public void run() {
-        String amountOfMoney = repeat(inputView::inputMachineMoney);
-
-        VendingMachine vendingMachine = new VendingMachine(amountOfMoney);
+        VendingMachine vendingMachine = createVendingMachine();
         outputView.printVendingMachineCoins(vendingMachine);
 
         String products = repeat(inputView::inputProduct);
@@ -71,6 +69,11 @@ public class VendingMachineController {
         change.calculateChange(vendingMachine);
         outputView.printInputMoney(inputMoney);
         outputView.printRemainder(change);
+    }
+
+    private VendingMachine createVendingMachine() {
+        String amountOfMoney = repeat(inputView::inputMachineMoney);
+        return new VendingMachine(amountOfMoney);
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
