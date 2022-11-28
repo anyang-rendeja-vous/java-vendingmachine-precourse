@@ -31,23 +31,26 @@ public class VendingMachineController {
         while (!isStop(vendingMachine, products)) {
             inputMoney = vendingMachine.getInputMoney();
             outputView.printInputMoney(inputMoney);
-
-            String inputProductName;
-            while (true) {
-                inputProductName = inputView.inputProductName();
-                try {
-                    vendingMachine.sell(inputProductName);
-                    break;
-                } catch (IllegalArgumentException ex) {
-                    outputView.printError(ex.getMessage());
-                }
-            }
+            makePurchase(vendingMachine);
         }
 
         Change change = new Change();
         change.calculateChange(vendingMachine);
         outputView.printInputMoney(inputMoney);
         outputView.printChange(change);
+    }
+
+    private void makePurchase(VendingMachine vendingMachine) {
+        String inputProductName;
+        while (true) {
+            inputProductName = inputView.inputProductName();
+            try {
+                vendingMachine.sell(inputProductName);
+                break;
+            } catch (IllegalArgumentException ex) {
+                outputView.printError(ex.getMessage());
+            }
+        }
     }
 
     private boolean isStop(VendingMachine vendingMachine, Products products) {
