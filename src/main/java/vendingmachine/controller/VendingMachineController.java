@@ -21,17 +21,14 @@ public class VendingMachineController {
         VendingMachine vendingMachine = createVendingMachine();
         outputView.printVendingMachineCoins(vendingMachine);
 
-        Products products = createProducts();
+        Products products = getProducts();
         vendingMachine.setProducts(products);
 
         String inputUserMoney = repeat(inputView::inputUserMoney);
         vendingMachine.setInputMoney(Integer.parseInt(inputUserMoney));
 
         int inputMoney = 0;
-        while (true) {
-            if (isStop(vendingMachine, products)) {
-                break;
-            }
+        while (!isStop(vendingMachine, products)) {
             inputMoney = vendingMachine.getInputMoney();
             outputView.printInputMoney(inputMoney);
 
@@ -62,9 +59,21 @@ public class VendingMachineController {
         return new VendingMachine(amountOfMoney);
     }
 
+    public Products getProducts() {
+        Products products;
+        do {
+            products = createProducts();
+        } while (products == null);
+        return products;
+    }
+
     private Products createProducts() {
-        String productGroup = repeat(inputView::inputProduct);
-        return new Products(productGroup);
+        try {
+            return new Products(repeat(inputView::inputProduct));
+        } catch (IllegalArgumentException ex) {
+            outputView.printError(ex.getMessage());
+        }
+        return null;
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
