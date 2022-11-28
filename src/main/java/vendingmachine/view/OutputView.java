@@ -1,27 +1,17 @@
 package vendingmachine.view;
 
-import static vendingmachine.Coin.COIN_10;
-import static vendingmachine.Coin.COIN_100;
-import static vendingmachine.Coin.COIN_50;
-import static vendingmachine.Coin.COIN_500;
-
 import java.util.Map;
-import java.util.Map.Entry;
-import vendingmachine.domain.coin.Change;
 import vendingmachine.Coin;
 import vendingmachine.domain.VendingMachine;
+import vendingmachine.domain.coin.Change;
 
 public class OutputView {
 
     private static final String VENDING_MACHINE_COINS = "자판기가 보유한 동전";
-    private static final String NUMBER_OF_500 = "500원 - ";
-    private static final String NUMBER_OF_100 = "100원 - ";
-    private static final String NUMBER_OF_50 = "50원 - ";
-    private static final String NUMBER_OF_10 = "10원 - ";
-    private static final String NUMBER = "개";
     private static final String INPUT_MONEY = "투입 금액: ";
     private static final String WON = "원";
     private static final String REMAINDER = "잔돈";
+    private static final String DELIMITER = "\n";
 
 //    public void printNewLine() {
 //        System.out.println();
@@ -31,10 +21,7 @@ public class OutputView {
         System.out.println();
         System.out.println(VENDING_MACHINE_COINS);
         Map<Coin, Integer> coinCounts = vendingMachine.getVendingMachineCoin().getNumberOfCoins();
-        System.out.println(NUMBER_OF_500 + coinCounts.get(COIN_500) + NUMBER);
-        System.out.println(NUMBER_OF_100 + coinCounts.get(COIN_100) + NUMBER);
-        System.out.println(NUMBER_OF_50 + coinCounts.get(COIN_50) + NUMBER);
-        System.out.println(NUMBER_OF_10 + coinCounts.get(COIN_10) + NUMBER);
+        System.out.println(String.join(DELIMITER, Coin.getCoinMessage(coinCounts)));
     }
 
     public void printInputMoney(int inputMoney) {
@@ -47,8 +34,6 @@ public class OutputView {
         System.out.println();
         System.out.println(REMAINDER);
         Map<Coin, Integer> coinCounts = remainedCoin.getRemainedCoins();
-        for (Entry<Coin, Integer> coin : coinCounts.entrySet()) {
-            System.out.println(coin);
-        }
+        System.out.println(String.join(DELIMITER, Coin.getCoinMessage(coinCounts)));
     }
 }
