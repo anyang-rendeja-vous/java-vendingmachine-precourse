@@ -28,10 +28,8 @@ public class VendingMachineController {
 
         String products = inputView.inputProduct();
         List<Product> productGroup = new ArrayList<>();
-        if (products.contains(";")) {
-            Arrays.asList(products.split(";"))
-                    .forEach(product -> productGroup.add(new Product(product)));
-        }
+        Arrays.asList(products.split(";"))
+                .forEach(product -> productGroup.add(new Product(product)));
         vendingMachine.setProducts(productGroup);
 
         String inputUserMoney = inputView.inputUserMoney();
