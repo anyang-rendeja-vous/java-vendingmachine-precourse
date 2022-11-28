@@ -10,6 +10,10 @@ public class Change {
 
     private final Map<Coin, Integer> change = new EnumMap<>(Coin.class); // 잔돈
 
+    public Change(VendingMachine vendingMachine) {
+        calculateChange(vendingMachine);
+    }
+
     public Map<Coin, Integer> getChange() { // TODO: getter
         return change;
     }

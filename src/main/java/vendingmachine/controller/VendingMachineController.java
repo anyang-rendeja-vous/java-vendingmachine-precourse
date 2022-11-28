@@ -34,10 +34,13 @@ public class VendingMachineController {
             makePurchase(vendingMachine);
         }
 
-        Change change = new Change();
-        change.calculateChange(vendingMachine);
+        Change change = createChange(vendingMachine);
         outputView.printInputMoney(inputMoney);
         outputView.printChange(change);
+    }
+
+    private Change createChange(VendingMachine vendingMachine) {
+        return new Change(vendingMachine);
     }
 
     private void makePurchase(VendingMachine vendingMachine) {
