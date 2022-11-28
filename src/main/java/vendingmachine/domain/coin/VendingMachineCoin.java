@@ -1,9 +1,9 @@
-package vendingmachine.domain;
+package vendingmachine.domain.coin;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+import vendingmachine.domain.Coin;
 
 public class VendingMachineCoin {
 

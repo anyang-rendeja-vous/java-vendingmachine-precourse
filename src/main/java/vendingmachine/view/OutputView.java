@@ -7,7 +7,7 @@ import static vendingmachine.domain.Coin.COIN_500;
 
 import java.util.Map;
 import java.util.Map.Entry;
-import vendingmachine.domain.Change;
+import vendingmachine.domain.coin.Change;
 import vendingmachine.domain.Coin;
 import vendingmachine.domain.VendingMachine;
 

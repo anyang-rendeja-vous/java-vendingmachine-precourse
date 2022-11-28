@@ -3,7 +3,7 @@ package vendingmachine.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import vendingmachine.domain.Change;
+import vendingmachine.domain.coin.Change;
 import vendingmachine.domain.Product;
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.view.InputView;
