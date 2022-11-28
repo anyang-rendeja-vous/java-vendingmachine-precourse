@@ -13,7 +13,7 @@ public class InputValidator {
     }
 
     public void isFormatValid(String product) {
-        if (!Pattern.matches("^(\\[.+,[0-9]+,[0-9]+])(;(\\[.+,[0-9]+,[0-9]+]))*$", product)) { // TODO: [,,];[,,] 형식 검증
+        if (!Pattern.matches("^\\[.+,\\d+,\\d+](;\\[.+,\\d+,\\d+])*$", product)) {
             throw new IllegalArgumentException(PRODUCT_FORMAT_ERROR);
         }
     }
