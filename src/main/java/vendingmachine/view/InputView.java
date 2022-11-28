@@ -22,7 +22,7 @@ public class InputView {
     public String inputMachineMoney() {
         System.out.println(ENTER_VENDING_MACHINE_MONEY);
         String machineMoney = input();
-        inputValidator.checkMachineMoney(machineMoney);
+        inputValidator.checkMoney(machineMoney);
         return machineMoney;
     }
 
@@ -37,7 +37,9 @@ public class InputView {
     public String inputUserMoney() {
         System.out.println();
         System.out.println(ENTER_INPUT_MONEY);
-        return input();
+        String userMoney = input();
+        inputValidator.checkMoney(userMoney);
+        return userMoney;
     }
 
     public String inputProductName() {
