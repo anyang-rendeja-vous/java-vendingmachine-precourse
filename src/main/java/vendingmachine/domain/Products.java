@@ -21,7 +21,7 @@ public class Products {
     }
 
     //상품 목록 포맷 확인
-    public void validateProduct(String product) {
+    private void validateProduct(String product) {
         if (!product.matches("^\\[[가-힣a-zA-Z]+,+[0-9]+,+[0-9]+\\].*")) {
             throw new IllegalArgumentException(ERROR_INPUT_PRODUCTS);
         }
@@ -44,14 +44,14 @@ public class Products {
     }
 
     //상품 가격 100원 이하 예외 처리
-    public void validateProductsMinimum(Product product) {
+    private void validateProductsMinimum(Product product) {
         if (product.getProductPrice() < 100) {
             throw new IllegalArgumentException(ERROR_PRODUCT_PRICE_MINIMUM);
         }
     }
 
     //상품 가격 10원 단위 예외 처리
-    public void validateProductsUnit(Product product) {
+    private void validateProductsUnit(Product product) {
         if (product.getProductPrice() % 10 != 0) {
             throw new IllegalArgumentException(ERROR_PRODUCT_PRICE_UNIT);
         }
