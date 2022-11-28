@@ -29,17 +29,14 @@ public class VendingMachineController {
 
         int inputMoney = 0;
         while (true) {
-            if (vendingMachine.getInputMoney() < products.getMinimumPrice()) {
-                break;
-            }
-            if (products.isOutOfStock()) {
+            if (isStop(vendingMachine, products)) {
                 break;
             }
             inputMoney = vendingMachine.getInputMoney();
             outputView.printInputMoney(inputMoney);
 
             String inputProductName;
-            while(true) {
+            while (true) {
                 inputProductName = inputView.inputProductName();
                 try {
                     vendingMachine.sell(inputProductName);
@@ -54,6 +51,10 @@ public class VendingMachineController {
         change.calculateChange(vendingMachine);
         outputView.printInputMoney(inputMoney);
         outputView.printChange(change);
+    }
+
+    private boolean isStop(VendingMachine vendingMachine, Products products) {
+        return products.isOutOfStock() || vendingMachine.getInputMoney() < products.getMinimumPrice();
     }
 
     private VendingMachine createVendingMachine() {
