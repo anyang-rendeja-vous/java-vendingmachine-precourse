@@ -31,7 +31,6 @@ public class OutputView {
     }
 
     public void printRemainder(Change remainedCoin) {
-        System.out.println();
         System.out.println(REMAINDER);
         Map<Coin, Integer> coinCounts = remainedCoin.getRemainedCoins();
         System.out.println(String.join(DELIMITER, Coin.getCoinMessage(coinCounts)));

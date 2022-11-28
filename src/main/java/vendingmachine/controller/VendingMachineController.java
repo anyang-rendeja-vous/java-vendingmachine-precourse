@@ -35,7 +35,7 @@ public class VendingMachineController {
         String inputUserMoney = inputView.inputUserMoney();
         vendingMachine.setInputMoney(Integer.parseInt(inputUserMoney));
 
-        int inputMoney;
+        int inputMoney = 0;
         while (true) {
             if (vendingMachine.getInputMoney() < vendingMachine.minimumPriceOfProduct()) {
                 break;
@@ -58,6 +58,7 @@ public class VendingMachineController {
 
         Change change = new Change();
         change.calculateRemainder(vendingMachine);
+        outputView.printInputMoney(inputMoney);
         outputView.printRemainder(change);
     }
 }
