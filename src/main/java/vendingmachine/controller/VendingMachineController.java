@@ -20,27 +20,13 @@ public class VendingMachineController {
     public void run() {
         VendingMachine vendingMachine = createVendingMachine();
         outputView.printVendingMachineCoins(vendingMachine);
-
         Products products = getProducts();
-        vendingMachine.setProducts(products);
-
         String inputUserMoney = repeat(inputView::inputUserMoney);
-        vendingMachine.setInputMoney(Integer.parseInt(inputUserMoney));
-
+        setVendingMachine(vendingMachine, products, inputUserMoney);
         int inputMoney = 0;
-        while (!isStop(vendingMachine, products)) {
-            inputMoney = vendingMachine.getInputMoney();
-            outputView.printInputMoney(inputMoney);
-            makePurchase(vendingMachine);
-        }
-
+        inputMoney = getInputMoney(vendingMachine, products, inputMoney);
         Change change = createChange(vendingMachine);
-        outputView.printInputMoney(inputMoney);
-        outputView.printChange(change);
-    }
-
-    private Change createChange(VendingMachine vendingMachine) {
-        return new Change(vendingMachine);
+        printResult(inputMoney, change);
     }
 
     private void makePurchase(VendingMachine vendingMachine) {
@@ -80,6 +66,29 @@ public class VendingMachineController {
             outputView.printError(ex.getMessage());
         }
         return null;
+    }
+
+    private void setVendingMachine(VendingMachine vendingMachine, Products products, String inputUserMoney) {
+        vendingMachine.setProducts(products);
+        vendingMachine.setInputMoney(Integer.parseInt(inputUserMoney));
+    }
+
+    private int getInputMoney(VendingMachine vendingMachine, Products products, int inputMoney) {
+        while (!isStop(vendingMachine, products)) {
+            inputMoney = vendingMachine.getInputMoney();
+            outputView.printInputMoney(inputMoney);
+            makePurchase(vendingMachine);
+        }
+        return inputMoney;
+    }
+
+    private Change createChange(VendingMachine vendingMachine) {
+        return new Change(vendingMachine);
+    }
+
+    private void printResult(int inputMoney, Change change) {
+        outputView.printInputMoney(inputMoney);
+        outputView.printChange(change);
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
