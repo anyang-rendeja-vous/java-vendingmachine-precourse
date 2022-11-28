@@ -42,6 +42,16 @@ public class VendingMachineController {
             if (vendingMachine.getInputMoney() < vendingMachine.minimumPriceOfProduct()) {
                 break;
             }
+            // 모든 상품이 소진된 경우
+            boolean isOutOfStock = false;
+            for (Product product : productGroup) {
+                if (!product.canBuy()) {
+                    isOutOfStock = true;
+                }
+            }
+            if (isOutOfStock) {
+                break;
+            }
             inputMoney = vendingMachine.getInputMoney();
             outputView.printInputMoney(inputMoney);
             String inputProductName = inputView.inputProductName();

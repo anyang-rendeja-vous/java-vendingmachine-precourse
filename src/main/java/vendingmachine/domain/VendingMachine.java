@@ -45,6 +45,7 @@ public class VendingMachine {
             }
             if (inputMoney >= prod.getPrice()) {
                 inputMoney -= prod.getPrice();
+                prod.updateQuantity();
             }
         }
     }

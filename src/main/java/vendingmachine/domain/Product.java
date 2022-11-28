@@ -18,6 +18,14 @@ public class Product {
         validate(price);
     }
 
+    public void updateQuantity() {
+        quantity -= 1;
+    }
+
+    public boolean canBuy() {
+        return quantity > 0;
+    }
+
     public List<String> split(String products) {
         String substring = products.substring(1, products.length() - 1);
         return Arrays.asList(substring.split(","));
