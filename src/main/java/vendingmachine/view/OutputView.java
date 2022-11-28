@@ -7,8 +7,9 @@ import static vendingmachine.domain.Coin.COIN_500;
 
 import java.util.Map;
 import java.util.Map.Entry;
-import vendingmachine.domain.Coin;
 import vendingmachine.domain.Change;
+import vendingmachine.domain.Coin;
+import vendingmachine.domain.VendingMachine;
 
 public class OutputView {
 
@@ -26,10 +27,10 @@ public class OutputView {
 //        System.out.println();
 //    }
 
-    public void printVendingMachineCoins(Change remainedCoin) {
+    public void printVendingMachineCoins(VendingMachine vendingMachine) {
         System.out.println();
         System.out.println(VENDING_MACHINE_COINS);
-        Map<Coin, Integer> coinCounts = remainedCoin.getNumberOfCoins();
+        Map<Coin, Integer> coinCounts = vendingMachine.getVendingMachineCoin().getNumberOfCoins();
         System.out.println(NUMBER_OF_500 + coinCounts.get(COIN_500) + NUMBER);
         System.out.println(NUMBER_OF_100 + coinCounts.get(COIN_100) + NUMBER);
         System.out.println(NUMBER_OF_50 + coinCounts.get(COIN_50) + NUMBER);

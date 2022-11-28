@@ -9,12 +9,16 @@ import vendingmachine.util.MoneyGenerator;
 public class VendingMachine {
 
     private static final String NOT_EXISTED_PRODUCTION = "존재하지 않는 상품입니다.";
-    private final List<Coin> coinGroup = new ArrayList<>();
     private List<Product> products;
     private Integer inputMoney;
+    private final VendingMachineCoin vendingMachineCoin = new VendingMachineCoin();
 
     public VendingMachine(String amountOfMoney) {
-        initCoin(amountOfMoney);
+        initVendingMachineCoin(amountOfMoney);
+    }
+
+    public VendingMachineCoin getVendingMachineCoin() {
+        return vendingMachineCoin;
     }
 
     public void setProducts(List<Product> products) {
@@ -48,7 +52,8 @@ public class VendingMachine {
     }
 
     // 자판기의 보유 금액으로 동전을 세팅한다
-    public void initCoin(String amountOfMoney) {
+    public void initVendingMachineCoin(String amountOfMoney) {
+        List<Coin> coinGroup = new ArrayList<>();
         int pick;
         int amount = Integer.parseInt(amountOfMoney);
         List<Integer> coins = Arrays.stream(Coin.values())
@@ -61,11 +66,7 @@ public class VendingMachine {
                 amount -= pick;
             }
         }
-
-    }
-
-    public List<Coin> getCoinGroup() { // TODO: getter
-        return coinGroup;
+        vendingMachineCoin.countEachCoin(coinGroup);
     }
 
     // 상품의 최저 가격을 반환한다

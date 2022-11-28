@@ -3,8 +3,8 @@ package vendingmachine.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import vendingmachine.domain.Product;
 import vendingmachine.domain.Change;
+import vendingmachine.domain.Product;
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
@@ -24,9 +24,7 @@ public class VendingMachineController {
         String amountOfMoney = inputView.inputMachineMoney();
 
         VendingMachine vendingMachine = new VendingMachine(amountOfMoney);
-        Change remainedCoin = new Change();
-        remainedCoin.countEachCoin(vendingMachine);
-        outputView.printVendingMachineCoins(remainedCoin);
+        outputView.printVendingMachineCoins(vendingMachine);
 
         String products = inputView.inputProduct();
         List<Product> productGroup = new ArrayList<>();
@@ -50,7 +48,8 @@ public class VendingMachineController {
             vendingMachine.sell(inputProductName);
         }
 
-        remainedCoin.calculateRemainder(vendingMachine);
-        outputView.printRemainder(remainedCoin);
+        Change change = new Change();
+        change.calculateRemainder(vendingMachine);
+        outputView.printRemainder(change);
     }
 }
