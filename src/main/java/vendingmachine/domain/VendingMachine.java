@@ -32,10 +32,7 @@ public class VendingMachine {
 
     public void sell(String inputProduct) {
         Product product = products.getProduct(inputProduct);
-        if (inputMoney >= product.getPrice()) {
-            inputMoney -= product.getPrice();
-            product.updateQuantity();
-        }
+        inputMoney = product.sold(inputMoney);
     }
 
     public int getInputMoney() { // TODO: getter

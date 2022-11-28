@@ -56,6 +56,14 @@ public class Product {
         }
     }
 
+    public int sold(int inputMoney) {
+        if (inputMoney >= price) {
+            inputMoney -= price;
+            updateQuantity();
+        }
+        return inputMoney;
+    }
+
     public int getPrice() { // TODO: getter
         return price;
     }
