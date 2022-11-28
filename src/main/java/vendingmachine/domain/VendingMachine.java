@@ -10,8 +10,7 @@ import vendingmachine.util.MoneyGenerator;
 
 public class VendingMachine {
 
-    private static final String NOT_EXISTED_PRODUCTION = "존재하지 않는 상품입니다.";
-    private List<Product> products;
+    private Products products;
     private Integer inputMoney;
     private final VendingMachineCoin vendingMachineCoin = new VendingMachineCoin();
 
@@ -23,7 +22,7 @@ public class VendingMachine {
         return vendingMachineCoin;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Products products) {
         this.products = products;
     }
 
@@ -32,13 +31,10 @@ public class VendingMachine {
     }
 
     public void sell(String inputProduct) {
-        Product prod = products.stream()
-                .filter(product -> product.getName().equals(inputProduct))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_EXISTED_PRODUCTION));
-        if (inputMoney >= prod.getPrice()) {
-            inputMoney -= prod.getPrice();
-            prod.updateQuantity();
+        Product product = products.getProduct(inputProduct);
+        if (inputMoney >= product.getPrice()) {
+            inputMoney -= product.getPrice();
+            product.updateQuantity();
         }
     }
 
@@ -62,13 +58,5 @@ public class VendingMachine {
             }
         }
         vendingMachineCoin.countCoin(coinGroup);
-    }
-
-    // 상품의 최저 가격을 반환한다
-    public Integer minimumPriceOfProduct() {
-        return products.stream()
-                .map(Product::getPrice)
-                .min(Integer::compareTo)
-                .orElse(null);
     }
 }

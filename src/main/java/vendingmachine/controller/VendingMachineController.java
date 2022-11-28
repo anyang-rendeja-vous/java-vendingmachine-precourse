@@ -1,12 +1,9 @@
 package vendingmachine.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Supplier;
-import vendingmachine.domain.coin.Change;
-import vendingmachine.domain.Product;
+import vendingmachine.domain.Products;
 import vendingmachine.domain.VendingMachine;
+import vendingmachine.domain.coin.Change;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 
@@ -24,12 +21,9 @@ public class VendingMachineController {
         VendingMachine vendingMachine = createVendingMachine();
         outputView.printVendingMachineCoins(vendingMachine);
 
-        String products = repeat(inputView::inputProduct);
-
-        List<Product> productGroup = new ArrayList<>();
-        Arrays.asList(products.split(";"))
-                .forEach(product -> productGroup.add(new Product(product)));
-        vendingMachine.setProducts(productGroup);
+        String productGroup = repeat(inputView::inputProduct);
+        Products products = new Products(productGroup);
+        vendingMachine.setProducts(products);
 
         String inputUserMoney = repeat(inputView::inputUserMoney);
 
@@ -37,17 +31,10 @@ public class VendingMachineController {
 
         int inputMoney = 0;
         while (true) {
-            if (vendingMachine.getInputMoney() < vendingMachine.minimumPriceOfProduct()) {
+            if (vendingMachine.getInputMoney() < products.getMinimumPrice()) {
                 break;
             }
-            // 모든 상품이 소진된 경우
-            boolean isOutOfStock = false;
-            for (Product product : productGroup) {
-                if (!product.canBuy()) {
-                    isOutOfStock = true;
-                }
-            }
-            if (isOutOfStock) {
+            if (products.isOutOfStock()) {
                 break;
             }
             inputMoney = vendingMachine.getInputMoney();
