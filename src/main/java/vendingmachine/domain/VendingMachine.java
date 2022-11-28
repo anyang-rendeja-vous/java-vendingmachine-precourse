@@ -45,18 +45,22 @@ public class VendingMachine {
     // 자판기의 보유 금액으로 동전을 세팅한다
     public void initVendingMachineCoin(String amountOfMoney) {
         List<Coin> coinGroup = new ArrayList<>();
-        int pick;
         int amount = Integer.parseInt(amountOfMoney);
         List<Integer> coins = Arrays.stream(Coin.values())
                 .map(Coin::getAmount)
                 .collect(Collectors.toList());
+        createCoinGroup(coinGroup, amount, coins);
+        vendingMachineCoin.countCoin(coinGroup);
+    }
+
+    private void createCoinGroup(List<Coin> coinGroup, int amount, List<Integer> coins) {
+        int coinValue;
         while (amount > 0) {
-            pick = MoneyGenerator.generate(coins);
-            if (pick <= amount) {
-                coinGroup.add(Coin.getCoin(pick));
-                amount -= pick;
+            coinValue = MoneyGenerator.generate(coins);
+            if (coinValue <= amount) {
+                coinGroup.add(Coin.getCoin(coinValue));
+                amount -= coinValue;
             }
         }
-        vendingMachineCoin.countCoin(coinGroup);
     }
 }
