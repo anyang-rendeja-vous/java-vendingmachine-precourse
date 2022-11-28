@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import vendingmachine.domain.Product;
+import vendingmachine.domain.Change;
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
@@ -23,7 +24,9 @@ public class VendingMachineController {
         String amountOfMoney = inputView.inputMachineMoney();
 
         VendingMachine vendingMachine = new VendingMachine(amountOfMoney);
-        outputView.printVendingMachineCoins(vendingMachine);
+        Change remainedCoin = new Change();
+        remainedCoin.countEachCoin(vendingMachine);
+        outputView.printVendingMachineCoins(remainedCoin);
 
         String products = inputView.inputProduct();
         List<Product> productGroup = new ArrayList<>();
@@ -38,12 +41,16 @@ public class VendingMachineController {
 
         int inputMoney;
         while (true) {
+            if (vendingMachine.getInputMoney() < vendingMachine.minimumPriceOfProduct()) {
+                break;
+            }
             inputMoney = vendingMachine.getInputMoney();
             outputView.printInputMoney(inputMoney);
             String inputProductName = inputView.inputProductName();
-            if (!vendingMachine.sell(inputProductName)) {
-                break;
-            }
+            vendingMachine.sell(inputProductName);
         }
+
+        remainedCoin.calculateRemainder(vendingMachine);
+        outputView.printRemainder(remainedCoin);
     }
 }

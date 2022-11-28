@@ -25,7 +25,7 @@ public class VendingMachine {
         this.inputMoney = inputMoney;
     }
 
-    public boolean sell(String inputProduct) {
+    public void sell(String inputProduct) {
         if (products.stream()
                 .map(Product::getName)
                 .collect(Collectors.toList())
@@ -39,16 +39,15 @@ public class VendingMachine {
             }
             if (inputMoney >= prod.getPrice()) {
                 inputMoney -= prod.getPrice();
-                return true;
             }
         }
-        return false;
     }
 
     public int getInputMoney() { // TODO: getter
         return inputMoney;
     }
 
+    // 자판기의 보유 금액으로 동전을 세팅한다
     public void initCoin(String amountOfMoney) {
         int pick;
         int amount = Integer.parseInt(amountOfMoney);
@@ -65,22 +64,15 @@ public class VendingMachine {
 
     }
 
-    public List<Integer> countEachCoin() {
-        List<Integer> count = Arrays.asList(0, 0, 0, 0);
-        coinGroup.forEach(coin -> {
-            if (coin.getAmount() == 500) {
-                count.set(0, count.get(0) + 1);
-            }
-            if (coin.getAmount() == 100) {
-                count.set(1, count.get(1) + 1);
-            }
-            if (coin.getAmount() == 50) {
-                count.set(2, count.get(2) + 1);
-            }
-            if (coin.getAmount() == 10) {
-                count.set(3, count.get(3) + 1);
-            }
-        });
-        return count;
+    public List<Coin> getCoinGroup() { // TODO: getter
+        return coinGroup;
+    }
+
+    // 상품의 최저 가격을 반환한다
+    public Integer minimumPriceOfProduct() {
+        return products.stream()
+                .map(Product::getPrice)
+                .min(Integer::compareTo)
+                .orElse(null);
     }
 }
