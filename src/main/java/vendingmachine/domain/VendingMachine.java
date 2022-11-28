@@ -32,21 +32,13 @@ public class VendingMachine {
     }
 
     public void sell(String inputProduct) {
-        if (products.stream()
-                .map(Product::getName)
-                .collect(Collectors.toList())
-                .contains(inputProduct)) {
-            Product prod = products.stream()
-                    .filter(product -> product.getName().equals(inputProduct))
-                    .findAny()
-                    .orElse(null);
-            if (prod == null) {
-                throw new IllegalArgumentException(NOT_EXISTED_PRODUCTION);
-            }
-            if (inputMoney >= prod.getPrice()) {
-                inputMoney -= prod.getPrice();
-                prod.updateQuantity();
-            }
+        Product prod = products.stream()
+                .filter(product -> product.getName().equals(inputProduct))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_EXISTED_PRODUCTION));
+        if (inputMoney >= prod.getPrice()) {
+            inputMoney -= prod.getPrice();
+            prod.updateQuantity();
         }
     }
 

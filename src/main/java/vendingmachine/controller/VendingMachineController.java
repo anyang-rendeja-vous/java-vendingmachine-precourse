@@ -54,8 +54,17 @@ public class VendingMachineController {
             }
             inputMoney = vendingMachine.getInputMoney();
             outputView.printInputMoney(inputMoney);
-            String inputProductName = inputView.inputProductName();
-            vendingMachine.sell(inputProductName);
+
+            String inputProductName;
+            while(true) {
+                inputProductName = inputView.inputProductName();
+                try {
+                    vendingMachine.sell(inputProductName);
+                    break;
+                } catch (IllegalArgumentException ex) {
+                    outputView.printError(ex.getMessage());
+                }
+            }
         }
 
         Change change = new Change();
