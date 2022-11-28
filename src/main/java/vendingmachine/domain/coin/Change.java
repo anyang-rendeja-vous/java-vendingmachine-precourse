@@ -14,7 +14,7 @@ public class Change {
         calculateChange(vendingMachine);
     }
 
-    public Map<Coin, Integer> getChange() { // TODO: getter
+    public Map<Coin, Integer> getChange() {
         return change;
     }
 

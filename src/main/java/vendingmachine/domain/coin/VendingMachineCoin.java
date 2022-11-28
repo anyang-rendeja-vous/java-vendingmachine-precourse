@@ -19,7 +19,7 @@ public class VendingMachineCoin {
         }
     }
 
-    public Map<Coin, Integer> getVendingMachineCoin() { // TODO: getter
+    public Map<Coin, Integer> getVendingMachineCoin() {
         return vendingMachineCoin;
     }
 

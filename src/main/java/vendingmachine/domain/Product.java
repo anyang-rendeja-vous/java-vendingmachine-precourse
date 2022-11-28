@@ -64,11 +64,11 @@ public class Product {
         return inputMoney;
     }
 
-    public int getPrice() { // TODO: getter
+    public int getPrice() {
         return price;
     }
 
-    public String getName() { // TODO: getter
+    public String getName() {
         return name;
     }
 }

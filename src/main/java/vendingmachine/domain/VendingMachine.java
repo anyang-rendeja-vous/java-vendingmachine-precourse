@@ -26,7 +26,7 @@ public class VendingMachine {
         this.products = products;
     }
 
-    public void setInputMoney(int inputMoney) { // TODO: setter
+    public void setInputMoney(int inputMoney) {
         this.inputMoney = inputMoney;
     }
 
@@ -35,7 +35,7 @@ public class VendingMachine {
         inputMoney = product.sold(inputMoney);
     }
 
-    public int getInputMoney() { // TODO: getter
+    public int getInputMoney() {
         return inputMoney;
     }
 

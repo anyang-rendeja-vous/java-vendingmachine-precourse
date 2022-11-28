@@ -28,7 +28,7 @@ public enum Coin {
                 .orElse(null);
     }
 
-    public int getAmount() { // TODO: getter 제거
+    public int getAmount() {
         return amount;
     }
 
