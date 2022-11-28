@@ -21,7 +21,7 @@ public class OutputView {
     public void printVendingMachineCoins(VendingMachine vendingMachine) {
         System.out.println();
         System.out.println(VENDING_MACHINE_COINS);
-        Map<Coin, Integer> coinCounts = vendingMachine.getVendingMachineCoin().getNumberOfCoins();
+        Map<Coin, Integer> coinCounts = vendingMachine.getVendingMachineCoin().getVendingMachineCoin();
         System.out.println(String.join(DELIMITER, Coin.getCoinMessage(coinCounts)));
     }
 

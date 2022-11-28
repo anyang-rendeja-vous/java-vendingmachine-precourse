@@ -16,7 +16,7 @@ public class Change {
 
     public void calculateChange(VendingMachine vendingMachine) {
         int inputMoney =  vendingMachine.getInputMoney();
-        Map<Coin, Integer> vendingMachineCoin = vendingMachine.getVendingMachineCoin().getNumberOfCoins();
+        Map<Coin, Integer> vendingMachineCoin = vendingMachine.getVendingMachineCoin().getVendingMachineCoin();
         for (Entry<Coin, Integer> coinEntry : vendingMachineCoin.entrySet()) {
             inputMoney = updateInputMoney(inputMoney, vendingMachineCoin, coinEntry);
         }

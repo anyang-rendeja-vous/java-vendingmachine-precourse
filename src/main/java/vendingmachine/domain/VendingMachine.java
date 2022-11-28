@@ -61,7 +61,7 @@ public class VendingMachine {
                 amount -= pick;
             }
         }
-        vendingMachineCoin.countEachCoin(coinGroup);
+        vendingMachineCoin.countCoin(coinGroup);
     }
 
     // 상품의 최저 가격을 반환한다
