@@ -62,7 +62,7 @@ public class Products {
         for (Product product : productList) {
             if (product.getProductName().equals(productName)) {
                 product = product.calculateProductCount(product);
-                money = Coin.calculateMoney(money, product.getProductPrice());
+                money -= product.getProductPrice();
             }
         }
         return money;

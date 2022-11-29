@@ -45,9 +45,4 @@ public enum Coin {
         }
         return vendingMachineCoins;
     }
-
-    //사용자 금액 계산
-    public static int calculateMoney(int money, int coin) {
-        return money - coin;
-    }
 }

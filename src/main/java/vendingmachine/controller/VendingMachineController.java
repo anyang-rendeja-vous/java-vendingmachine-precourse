@@ -1,15 +1,15 @@
 package vendingmachine.controller;
 
-import static vendingmachine.Coin.initVendingMachineCoins;
-import static vendingmachine.Messages.*;
+import static vendingmachine.domain.Coin.initVendingMachineCoins;
+import static vendingmachine.util.Messages.*;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import vendingmachine.Coin;
-import vendingmachine.Product;
-import vendingmachine.Products;
+import vendingmachine.domain.Coin;
+import vendingmachine.domain.Product;
+import vendingmachine.domain.Products;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 
@@ -111,7 +111,7 @@ public class VendingMachineController {
         while (money / coin != 0 && vendingMachineCoins.get(coin) != 0) {
             vendingMachineCoins.put(coin, vendingMachineCoins.get(coin) - 1);
             remainingCoins.put(coin, remainingCoins.getOrDefault(coin, 0) + 1);
-            money = Coin.calculateMoney(money, coin);
+            money -= coin;
         }
         return remainingCoins;
     }
