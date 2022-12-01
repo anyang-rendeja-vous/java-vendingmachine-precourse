@@ -27,10 +27,7 @@ public class Change {
     }
 
     private int updateInputMoney(int inputMoney, Map<Coin, Integer> vendingMachineCoin, Entry<Coin, Integer> coin) {
-        while (coin.getValue() > 0) {
-            if (coin.getKey().getAmount() > inputMoney) {
-                break;
-            }
+        while (coin.getValue() > 0 && coin.getKey().getAmount() <= inputMoney) {
             inputMoney -= coin.getKey().getAmount();
             updateCoin(vendingMachineCoin, coin);
         }
