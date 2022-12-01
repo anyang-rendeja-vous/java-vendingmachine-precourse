@@ -2,9 +2,9 @@ package vendingmachine.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputView {
+public class InputReader {
 
-    public String userInput(){
+    public static String userInput(){
         return Console.readLine();
     }
 
