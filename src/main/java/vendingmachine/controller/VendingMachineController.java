@@ -23,8 +23,7 @@ public class VendingMachineController {
         Products products = getProducts();
         String inputUserMoney = repeat(inputView::inputUserMoney);
         setVendingMachine(vendingMachine, products, inputUserMoney);
-        int inputMoney = 0;
-        inputMoney = getInputMoney(vendingMachine, products, inputMoney);
+        int inputMoney = getInputMoney(vendingMachine, products);
         Change change = createChange(vendingMachine);
         printResult(inputMoney, change);
     }
@@ -73,13 +72,12 @@ public class VendingMachineController {
         vendingMachine.setInputMoney(Integer.parseInt(inputUserMoney));
     }
 
-    private int getInputMoney(VendingMachine vendingMachine, Products products, int inputMoney) {
+    private int getInputMoney(VendingMachine vendingMachine, Products products) {
         while (!isStop(vendingMachine, products)) {
-            inputMoney = vendingMachine.getInputMoney();
-            outputView.printInputMoney(inputMoney);
+            outputView.printInputMoney(vendingMachine.getInputMoney());
             makePurchase(vendingMachine);
         }
-        return inputMoney;
+        return vendingMachine.getInputMoney();
     }
 
     private Change createChange(VendingMachine vendingMachine) {
