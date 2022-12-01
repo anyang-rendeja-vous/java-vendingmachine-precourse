@@ -1,11 +1,11 @@
 package vendingmachine.controller;
 
-import static vendingmachine.ui.InputReader.*;
+import static vendingmachine.ui.InputReader.userInput;
 
 import java.util.EnumMap;
 import vendingmachine.domain.Coin;
 import vendingmachine.domain.Stock;
-import vendingmachine.ui.InputReader;
+import vendingmachine.ui.InputView;
 import vendingmachine.ui.OutputView;
 import vendingmachine.domain.RemainingCoins;
 import vendingmachine.domain.Stocks;
@@ -13,10 +13,12 @@ import vendingmachine.domain.UsersMoney;
 import vendingmachine.VendingMachine;
 
 public class MachineController {
+    private final InputView inputView;
     private final OutputView outputView;
     private VendingMachine vendingMachine;
 
     public MachineController() {
+        inputView = new InputView();
         outputView = new OutputView();
     }
 
@@ -33,7 +35,7 @@ public class MachineController {
     }
 
     private RemainingCoins generateCoins() {
-        outputView.printMachineMoneyInputOpening();
+        inputView.printMachineMoneyInputOpening();
         try {
             return new RemainingCoins(userInput());
         } catch (IllegalArgumentException exception) {
@@ -43,7 +45,7 @@ public class MachineController {
     }
 
     private Stocks addStocks() {
-        outputView.printMerchandiseInfoOpening();
+        inputView.printMerchandiseInfoOpening();
         try {
             return new Stocks(userInput());
         } catch (IllegalArgumentException exception) {
@@ -53,7 +55,7 @@ public class MachineController {
     }
 
     private UsersMoney insertMoney() {
-        outputView.printUserMoneyInputOpening();
+        inputView.printUserMoneyInputOpening();
         try {
             return new UsersMoney(userInput());
         } catch (IllegalArgumentException exception) {
@@ -65,7 +67,7 @@ public class MachineController {
     private void purchase() {
         while (vendingMachine.isPurchasable()) {
             outputView.printLeftovers(vendingMachine.getUsersMoney());
-            outputView.printUsersStockChoiceOpening();
+            inputView.printUsersStockChoiceOpening();
             try {
                 Stock existingStock = vendingMachine.checkStock(userInput());
                 if (!vendingMachine.isPurchasable(existingStock)) {
