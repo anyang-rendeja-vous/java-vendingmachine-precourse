@@ -1,6 +1,7 @@
 package vendingmachine.view;
 
 import java.util.Map;
+import java.util.Map.Entry;
 import vendingmachine.Coin;
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.domain.coin.Change;
@@ -11,14 +12,19 @@ public class OutputView {
     private static final String INPUT_MONEY = "투입 금액: ";
     private static final String WON = "원";
     private static final String CHANGE = "잔돈";
-    private static final String DELIMITER = "\n";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printVendingMachineCoins(VendingMachine vendingMachine) {
         System.out.println();
         System.out.println(VENDING_MACHINE_COINS);
         Map<Coin, Integer> coinCounts = vendingMachine.getVendingMachineCoin().getVendingMachineCoin();
-        System.out.println(String.join(DELIMITER, Coin.getCoinMessage(coinCounts)));
+        printCoinCounts(coinCounts);
+    }
+
+    private void printCoinCounts(Map<Coin, Integer> coinCounts) {
+        for (Entry<Coin, Integer> entry : coinCounts.entrySet()) {
+            System.out.println(String.format(entry.getKey().toString(), entry.getValue()));
+        }
     }
 
     public void printInputMoney(int inputMoney) {
@@ -30,7 +36,7 @@ public class OutputView {
     public void printChange(Change change) {
         System.out.println(CHANGE);
         Map<Coin, Integer> coinCounts = change.getChange();
-        System.out.println(String.join(DELIMITER, Coin.getCoinMessage(coinCounts)));
+        printCoinCounts(coinCounts);
     }
 
     public void printError(String message) {
