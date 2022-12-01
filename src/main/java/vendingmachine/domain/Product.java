@@ -43,15 +43,13 @@ public class Product {
     }
 
     private void checkPriceRange(Integer inputPrice) {
-        boolean isValid = inputPrice >= MINIMUM_PRICE;
-        if (!isValid) {
+        if (inputPrice < MINIMUM_PRICE) {
             throw new IllegalArgumentException(PRICE_RANGE_ERROR);
         }
     }
 
     private void checkPriceDivisor(Integer inputPrice) {
-        boolean isValid = inputPrice % DIVISOR == 0;
-        if (!isValid) {
+        if (inputPrice % DIVISOR != 0) {
             throw new IllegalArgumentException(PRICE_DIVISOR_ERROR);
         }
     }
