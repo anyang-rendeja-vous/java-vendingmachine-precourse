@@ -14,10 +14,7 @@ public class UsersMoney {
     }
 
     private boolean isValidMoney(String amount) {
-        if (!isNull(amount) && isNumeric(amount)) {
-            return true;
-        }
-        return false;
+        return !isNull(amount) && isNumeric(amount);
     }
 
     private boolean isNull(String amount) {

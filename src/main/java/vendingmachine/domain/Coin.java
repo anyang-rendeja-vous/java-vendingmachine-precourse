@@ -29,8 +29,6 @@ public enum Coin {
     }
 
     private static boolean isMatchingCoin(Coin coin, int money){
-        if (coin.amount() == money)
-            return true;
-        return false;
+        return coin.amount() == money;
     }
 }
